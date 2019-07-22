@@ -1,0 +1,15 @@
+{
+  "name": "pwa-article",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel app/index.html"
+  },
+  "author": "mstrutt",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^1.12.3"
+  }
+}
