@@ -1,23 +1,33 @@
 import { MESSAGES, SYNCS } from './config';
+import { updateData } from './utils/api-handlers';
+import { ListHandler } from './utils/list-handler';
 import { SyncBar } from './utils/sync-bar';
 import swMessage from './utils/message-promise';
 
+const listHandler = new ListHandler(document.querySelector('.contact-list'));
 const syncBar = new SyncBar(document.querySelector('.sync-bar'));
+
+updateData()
+  .then(() => {
+    listHandler.updateData();
+  });
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./service-worker.js')
     .then(() => {
       console.log('[main.js] SW Registered');
-      swMessage({
-        name: MESSAGES.DO_SOMETHING,
-        data: {
-          test: true
-        }
-      })
-        .then((reply) => {
-          console.debug('[main.js] reply received', reply);
-        });
     })
+    // .then(() => {
+    //   swMessage({
+    //     name: MESSAGES.DO_SOMETHING,
+    //     data: {
+    //       test: true
+    //     }
+    //   })
+    //     .then((reply) => {
+    //       console.debug('[main.js] reply received', reply);
+    //     });
+    // })
     .catch(() => {
       console.log('[main.js] Failed to register service worker');
     });

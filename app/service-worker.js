@@ -1,4 +1,5 @@
 import { MESSAGES, SYNCS } from "./config";
+import { updateData } from './utils/api-handlers';
 
 self.addEventListener('message', (event) => {
   console.log('[SW] message received', event.data.name);
@@ -10,15 +11,6 @@ self.addEventListener('message', (event) => {
       .catch((error) => replyPort.postMessage({ error }));
   }
 });
-
-function messageAllCleints(message) {
-  return clients.matchAll({ type: 'window' })
-    .then((clientList) => {
-      clientList.forEach((client) => {
-        client.postMessage(message);
-      });
-    });
-}
 
 self.addEventListener('sync', (event) => {
   if (event.tag === SYNCS.UPDATE) {
@@ -40,9 +32,16 @@ self.addEventListener('sync', (event) => {
   }
 });
 
-setTimeout(() => {
-  messageAllCleints('test');
-}, 5000);
+self.skipWaiting();
+
+function messageAllCleints(message) {
+  return clients.matchAll({ type: 'window' })
+    .then((clientList) => {
+      clientList.forEach((client) => {
+        client.postMessage(message);
+      });
+    });
+}
 
 // Testing functions
 function doSomething() {
@@ -51,14 +50,4 @@ function doSomething() {
       resolve('success');
     }, 1000);
   })
-}
-
-function updateData() {
-  console.debug('[SW] Beginning update sync');
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-      console.debug('[SW] Finished update sync');
-    }, 1000);
-  });
 }
