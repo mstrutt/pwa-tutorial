@@ -1,4 +1,4 @@
-import { MESSAGES } from "./config";
+import { MESSAGES, SYNCS } from "./config";
 
 self.addEventListener('message', (event) => {
   console.log('[SW] message received', event.data.name);
@@ -21,7 +21,23 @@ function messageAllCleints(message) {
 }
 
 self.addEventListener('sync', (event) => {
-  // Handle the sync event here
+  if (event.tag === SYNCS.UPDATE) {
+    messageAllCleints({ name: MESSAGES.SYNC_STARTED });
+    event.waitUntil(
+      updateData()
+        .then(response => messageAllCleints({
+          name: MESSAGES.SYNC_SUCCESS,
+          data: response,
+        }))
+        .catch(error => {
+          messageAllCleints({
+            name: MESSAGES.SYNC_ERROR,
+            data: error,
+          });
+          return Promise.reject(error);
+        })
+    );
+  }
 });
 
 setTimeout(() => {
@@ -35,4 +51,14 @@ function doSomething() {
       resolve('success');
     }, 1000);
   })
+}
+
+function updateData() {
+  console.debug('[SW] Beginning update sync');
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+      console.debug('[SW] Finished update sync');
+    }, 1000);
+  });
 }
