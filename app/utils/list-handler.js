@@ -43,8 +43,9 @@ export class ListHandler {
 
   render() {
     this.el.innerHTML = this.contacts.map((contact) => {
-      return `<li>
-        <strong>${contact.name}</strong> - ${contact.email}
+      return `<li class="contact-list__contact">
+        <h2 class="contact-list__name">${contact.name}</h2>
+        <p class="contact-list__detail">${contact.email} - ${contact.phone}</p>
       </li>`;
     }).join('') + `
       <li>

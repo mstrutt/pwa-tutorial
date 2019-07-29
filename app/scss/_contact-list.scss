@@ -1,0 +1,26 @@
+.contact-list {
+  list-style-type: none;
+  padding: 0;
+
+  &__contact {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 64px;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  &__name {
+    color: #000000de;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__detail {
+    color: #00000099;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+  }
+}
