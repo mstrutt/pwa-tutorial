@@ -1,30 +1,20 @@
 import { MESSAGES, SYNCS } from "./config";
-import { updateData } from './utils/api-handlers';
-
-self.addEventListener('message', (event) => {
-  console.log('[SW] message received', event.data.name);
-
-  const replyPort = event.ports[0];
-  if (event.data.name === MESSAGES.DO_SOMETHING) {
-    doSomething(event.data)
-      .then((response) => replyPort.postMessage(response))
-      .catch((error) => replyPort.postMessage({ error }));
-  }
-});
+import { updateContacts, postUnsyncedContacts } from './utils/api-handlers';
 
 self.addEventListener('sync', (event) => {
+  console.debug('[SW] Sync triggered', event.tag);
   if (event.tag === SYNCS.UPDATE) {
-    messageAllCleints({ name: MESSAGES.SYNC_STARTED });
+    messageAllClients({ name: MESSAGES.SYNC_STARTED });
     event.waitUntil(
-      updateData()
-        .then(response => messageAllCleints({
+      syncContacts()
+        .then(response => messageAllClients({
           name: MESSAGES.SYNC_SUCCESS,
           data: response,
         }))
         .catch(error => {
-          messageAllCleints({
+          messageAllClients({
             name: MESSAGES.SYNC_ERROR,
-            data: error,
+            data: error.message,
           });
           return Promise.reject(error);
         })
@@ -34,20 +24,17 @@ self.addEventListener('sync', (event) => {
 
 self.skipWaiting();
 
-function messageAllCleints(message) {
+function syncContacts() {
+  return postUnsyncedContacts()
+    .then(() => updateContacts());
+}
+
+function messageAllClients(message) {
   return clients.matchAll({ type: 'window' })
     .then((clientList) => {
+      console.debug(clientList);
       clientList.forEach((client) => {
         client.postMessage(message);
       });
     });
-}
-
-// Testing functions
-function doSomething() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('success');
-    }, 1000);
-  })
 }

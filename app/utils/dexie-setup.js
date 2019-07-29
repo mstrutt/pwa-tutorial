@@ -6,4 +6,8 @@ db.version(1).stores({
   contacts: 'id, name, email, phone'
 });
 
+db.version(2).stores({
+  updated_contacts: 'id, name, email, phone'
+});
+
 export default db;

@@ -1,5 +1,5 @@
 import { MESSAGES, SYNCS } from './config';
-import { updateData } from './utils/api-handlers';
+import { updateContacts } from './utils/api-handlers';
 import { ListHandler } from './utils/list-handler';
 import { SyncBar } from './utils/sync-bar';
 import swMessage from './utils/message-promise';
@@ -7,7 +7,7 @@ import swMessage from './utils/message-promise';
 const listHandler = new ListHandler(document.querySelector('.contact-list'));
 const syncBar = new SyncBar(document.querySelector('.sync-bar'));
 
-updateData()
+updateContacts()
   .then(() => {
     listHandler.updateData();
   });
