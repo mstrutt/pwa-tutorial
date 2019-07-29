@@ -50,7 +50,7 @@ export class ListHandler {
     }).join('') + `
       <li>
         <form>
-          <label for="name">Name</label><input id="name" name="name" />
+          <label for="name">name</label><input id="name" name="name" />
           <label for="email">email</label><input type="email" id="email" name="email" />
           <label for="phone">phone</label><input type="tel id="phone" name="phone" />
           <button type="submit">Add</button>

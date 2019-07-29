@@ -1,0 +1,23 @@
+form {
+  padding: 0 16px;
+  width: min-content;
+
+  label {
+    display: block;
+    font-size: 14px;
+  }
+
+  input {
+    border: 1px solid #00000099;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: inherit;
+    margin-bottom: 16px;
+    padding: 4px;
+  }
+
+  button {
+    display: block;
+    margin-left: auto;
+  }
+}
