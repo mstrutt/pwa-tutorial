@@ -1,10 +1,12 @@
 import { MESSAGES, SYNCS } from './config';
 import { updateContacts } from './utils/api-handlers';
+import { FabForm } from './utils/fab-form';
 import { ListHandler } from './utils/list-handler';
 import { SyncBar } from './utils/sync-bar';
 
 const listHandler = new ListHandler(document.querySelector('.contact-list'));
 const syncBar = new SyncBar(document.querySelector('.sync-bar'));
+const fabForm = new FabForm(document.querySelector('.fab-form'), listHandler.onSubmit);
 
 updateContacts()
   .then(() => {

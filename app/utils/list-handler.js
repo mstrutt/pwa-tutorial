@@ -42,9 +42,12 @@ export class ListHandler {
       .reduce((data, element) => {
         data[element.name] = element.value;
         return data;
-      }, {
-        id: Date.now(),
-      });
+      }, {});
+    if (!Object.values(newContact).some(val => val !== '')) {
+      // Don't save a contact if all values are empty
+      return;
+    }
+    newContact.id = Date.now();
     this.addContact(newContact);
   }
 
@@ -54,16 +57,6 @@ export class ListHandler {
         <h2 class="contact-list__name">${contact.name}</h2>
         <p class="contact-list__detail">${contact.email} - ${contact.phone}</p>
       </li>`;
-    }).join('') + `
-      <li>
-        <form>
-          <label for="name">name</label><input id="name" name="name" />
-          <label for="email">email</label><input type="email" id="email" name="email" />
-          <label for="phone">phone</label><input type="tel id="phone" name="phone" />
-          <button type="submit">Add</button>
-        </form>
-      </li>
-    `;
-    this.el.querySelector('form').addEventListener('submit', this.onSubmit);
+    }).join('');
   }
 }

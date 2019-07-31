@@ -11,4 +11,12 @@ button {
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
+
+  &.primary {
+    color: #6200ee;
+  }
+}
+
+.is-hidden {
+  display: none;
 }

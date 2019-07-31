@@ -1,10 +1,11 @@
 form {
-  padding: 0 16px;
+  padding: 8px 16px 0;
   width: min-content;
 
   label {
     display: block;
     font-size: 14px;
+    margin-bottom: 4px;
   }
 
   input {
@@ -13,11 +14,12 @@ form {
     font-family: inherit;
     font-size: inherit;
     margin-bottom: 16px;
-    padding: 4px;
+    padding: 8px;
+    width: 220px;
   }
 
   button {
     display: block;
-    margin-left: auto;
+    margin-left: 12px;
   }
 }

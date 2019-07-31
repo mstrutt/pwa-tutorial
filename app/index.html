@@ -17,9 +17,21 @@
 
     <ul class="contact-list"></ul>
 
-    <button class="fab fab--primary" aria-label="Add contact">
+    <button class="fab fab--primary" aria-label="Add contact" aria-controls="add-contact-form">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
     </button>
+
+    <div class="fab-form is-hidden" id="add-contact-form" aria-hidden="true">
+      <form>
+        <label for="name">name</label><input id="name" name="name" />
+        <label for="email">email</label><input type="email" id="email" name="email" />
+        <label for="phone">phone</label><input type="tel id="phone" name="phone" />
+        <div class="fab-form__actions">
+          <button aria-controls="add-contact-form" type="button">Cancel</button>
+          <button class="primary" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
     
     <script src="./main.js"></script>
   </body>

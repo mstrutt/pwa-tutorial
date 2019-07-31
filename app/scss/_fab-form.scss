@@ -1,0 +1,21 @@
+.fab-form {
+  background-color: #fff;
+  border-radius: 4px;
+  bottom: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .4), 0 0 0 100vmax rgba(0, 0, 0, .27);
+  height: max-content;
+  left: 8px;
+  margin: auto;
+  padding: 12px 8px;
+  position: fixed;
+  right: 8px;
+  top: 8px;
+  width: min-content;
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -8px;
+    margin-top: 12px;
+  }
+}
