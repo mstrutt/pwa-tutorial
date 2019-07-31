@@ -16,6 +16,7 @@ export class ListHandler {
     db.contacts.toArray()
       .then((contacts) => {
         this.contacts = contacts;
+        this.sortContacts();
         this.render();
       });
     }
@@ -23,9 +24,15 @@ export class ListHandler {
   addContact(newContact) {
     createNewContact(newContact)
       .then(() => {
-        this.contacts.push(newContact)
+        this.contacts.push(newContact);
         this.render();
       });
+  }
+
+  sortContacts() {
+    this.contacts = this.contacts.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
+    });
   }
 
   onSubmit(event) {

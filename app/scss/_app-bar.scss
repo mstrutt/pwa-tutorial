@@ -1,0 +1,14 @@
+.app-bar {
+  align-items: center;
+  background: #6200ee;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+  display: flex;
+  min-height: 56px;
+  padding: 8px 16px;
+  
+  &__title {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+  }
+}

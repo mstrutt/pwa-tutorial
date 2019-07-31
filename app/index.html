@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PWA Tutorial</title>
+    <title>Contacts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./styles.scss" />
   </head>
@@ -11,9 +11,15 @@
       <button class="sync-bar__button">close</button>
     </div>
 
-    <h1>Contacts PWA</h1>
+    <div class="app-bar">
+      <h1 class="app-bar__title">Contacts</h1>
+    </div>
 
     <ul class="contact-list"></ul>
+
+    <button class="fab fab--primary" aria-label="Add contact">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+    </button>
     
     <script src="./main.js"></script>
   </body>
