@@ -31,7 +31,10 @@ if ('serviceWorker' in navigator) {
 
     const syncAction = ({
       [MESSAGES.SYNC_STARTED]: () => syncBar.syncing(),
-      [MESSAGES.SYNC_SUCCESS]: () => syncBar.success(),
+      [MESSAGES.SYNC_SUCCESS]: () => {
+        syncBar.success();
+        listHandler.updateData();
+      },
       [MESSAGES.SYNC_ERROR]: () => syncBar.error(),
     })[event.data.name];
 
