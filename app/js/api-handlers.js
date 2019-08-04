@@ -1,4 +1,4 @@
-import { API_ROUTES } from '../config';
+import { API_ROUTES } from './config';
 import db from './dexie-setup';
 
 export function updateContacts() {

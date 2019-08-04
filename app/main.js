@@ -1,8 +1,8 @@
-import { MESSAGES, SYNCS } from './config';
-import { updateContacts } from './utils/api-handlers';
-import { FabForm } from './utils/fab-form';
-import { ListHandler } from './utils/list-handler';
-import { SyncBar } from './utils/sync-bar';
+import { MESSAGES, SYNCS } from './js/config';
+import { updateContacts } from './js/api-handlers';
+import { FabForm } from './js/fab-form';
+import { ListHandler } from './js/list-handler';
+import { SyncBar } from './js/sync-bar';
 
 const listHandler = new ListHandler(document.querySelector('.contact-list'));
 const syncBar = new SyncBar(document.querySelector('.sync-bar'));

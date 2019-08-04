@@ -1,5 +1,5 @@
-import { MESSAGES, SYNCS } from "./config";
-import { updateContacts, postUnsyncedContacts } from './utils/api-handlers';
+import { MESSAGES, SYNCS } from "./js/config";
+import { updateContacts, postUnsyncedContacts } from './js/api-handlers';
 
 self.addEventListener('sync', (event) => {
   console.debug('[SW] Sync triggered', event.tag);
