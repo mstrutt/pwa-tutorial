@@ -13,6 +13,14 @@
     "dexie": "^2.0.4",
     "json-server": "^0.15.0",
     "parcel": "^1.12.3",
-    "sass": "^1.22.7"
+    "parcel-plugin-sw-cache": "^0.3.1",
+    "sass": "^1.22.7",
+    "workbox-precaching": "^4.3.1"
+  },
+  "cache": {
+    "strategy": "inject",
+    "swSrc": "./app/js/sw-workbox.js",
+    "swDest": "sw-workbox.js",
+    "inDev": "true"
   }
 }
