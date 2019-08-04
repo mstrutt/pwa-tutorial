@@ -1,0 +1,15 @@
+{
+  "name": "Contacts",
+  "short_name": "Contacts",
+  "description": "Contacts app for NET mag tutorial",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "background_color": "#6200ee",
+  "theme_color": "#6200ee",
+  "icons": [{
+    "src": "./icon.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}
