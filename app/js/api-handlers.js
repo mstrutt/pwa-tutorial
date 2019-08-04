@@ -92,3 +92,9 @@ export function postContactToApi(contact) {
       }
     });
 }
+
+// Sequentially pushing up any unsynced changes, then pulling down latest data
+export function syncContacts() {
+  return postUnsyncedContacts()
+    .then(() => updateContacts());
+}

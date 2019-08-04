@@ -1,6 +1,6 @@
 import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute.mjs';
 import { MESSAGES, SYNCS } from "./js/config";
-import { updateContacts, postUnsyncedContacts } from './js/api-handlers';
+import { syncContacts } from './js/api-handlers';
 
 // Using SW Workbox to save all our files for offline access
 importScripts('./sw-workbox.js');
@@ -9,6 +9,8 @@ if (precacheFiles) {
 } else {
   console.warn('Failed to precache files, offline functionality will be unavailable');
 }
+
+self.skipWaiting();
 
 // Listening for the sync event
 self.addEventListener('sync', (event) => {
@@ -31,14 +33,6 @@ self.addEventListener('sync', (event) => {
     );
   }
 });
-
-self.skipWaiting();
-
-// Sequentially pushing up any unsynced changes, then pulling down latest data
-function syncContacts() {
-  return postUnsyncedContacts()
-    .then(() => updateContacts());
-}
 
 // Helper function we created to communicate with all connected browser windows
 function messageAllClients(message) {

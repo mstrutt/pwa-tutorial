@@ -16,7 +16,6 @@ export class ListHandler {
     db.contacts.toArray()
       .then((contacts) => {
         this.contacts = contacts;
-        this.sortContacts();
         this.render();
       });
     }
@@ -25,7 +24,6 @@ export class ListHandler {
     createNewContact(newContact)
       .then(() => {
         this.contacts.push(newContact);
-        this.sortContacts();
         this.render();
       });
   }
@@ -53,7 +51,7 @@ export class ListHandler {
   }
 
   render() {
-    this.el.innerHTML = this.contacts.map((contact) => {
+    this.el.innerHTML = this.sortContacts().map((contact) => {
       return `<li class="contact-list__contact">
         <h2 class="contact-list__name">${contact.name}</h2>
         <p class="contact-list__detail">${contact.email} - ${contact.phone}</p>
