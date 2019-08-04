@@ -29,7 +29,7 @@ export class ListHandler {
   }
 
   sortContacts() {
-    this.contacts = this.contacts.sort((a, b) => {
+    return this.contacts.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
   }
