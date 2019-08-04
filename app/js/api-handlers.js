@@ -1,4 +1,4 @@
-import { API_ROUTES } from './config';
+import { API_ROUTES, SYNCS } from './config';
 import db from './dexie-setup';
 
 // Function to pull down the latest contacts data from the API
@@ -26,9 +26,14 @@ export function createNewContact(contact) {
         .then(() => serverContact);
     })
     .catch(() => {
+      // Add the contact to those waiting to be synced
       return db.updated_contacts.put(contact)
         .then(() => {
-          // We'll handle this later
+          // Get the registration for the service worker.
+          // Then trigger a sync
+          return navigator.serviceWorker.ready.then((registration) => {
+            return registration.sync.register(SYNCS.UPDATE);
+          });
         });
     });
 }

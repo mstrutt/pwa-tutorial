@@ -25,6 +25,7 @@ export class ListHandler {
     createNewContact(newContact)
       .then(() => {
         this.contacts.push(newContact);
+        this.sortContacts();
         this.render();
       });
   }
