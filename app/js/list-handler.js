@@ -13,12 +13,9 @@ export class ListHandler {
   }
 
   updateData() {
-    db.contacts.toArray()
-      .then((contacts) => {
-        this.contacts = contacts;
-        this.render();
-      });
-    }
+    // UPDATE THIS TO DO MORE THAN JUST CALL this.render()
+    this.render();
+  }
     
   addContact(newContact) {
     createNewContact(newContact)

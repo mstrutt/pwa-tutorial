@@ -3,11 +3,11 @@ import db from './dexie-setup';
 
 // Function to pull down the latest contacts data from the API
 export function updateContacts() {
-  const updateContactsRequest = getContactsFromAPI()
-    .then(contacts => {
-      return db.contacts.bulkPut(contacts)
-        .then(() => contacts);
-    });
+
+
+  // REPLACE THIS LINE WITH CODE FROM THE TUTORIAL
+  const updateContactsRequest = Promise.resolve();
+
 
   // Making this function take at least 1.5 seconds by depending on a timeout
   // This is purely for the sake of visually testing the syncs
@@ -22,19 +22,14 @@ export function updateContacts() {
 export function createNewContact(contact) {
   return postContactToApi(contact)
     .then((serverContact) => {
-      return db.contacts.put(serverContact)
-        .then(() => serverContact);
+
+      // SAVE THE CONTACT TO IndexedDB HERE
+
     })
     .catch(() => {
-      // Add the contact to those waiting to be synced
-      return db.updated_contacts.put(contact)
-        .then(() => {
-          // Get the registration for the service worker.
-          // Then trigger a sync
-          return navigator.serviceWorker.ready.then((registration) => {
-            return registration.sync.register(SYNCS.UPDATE);
-          });
-        });
+
+      // HANDLE THE FAILED NETWORK REQUEST HERE
+
     });
 }
 

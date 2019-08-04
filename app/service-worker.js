@@ -12,35 +12,8 @@ if (precacheFiles) {
 
 self.skipWaiting();
 
-// Listening for the sync event
-self.addEventListener('sync', (event) => {
-  console.debug('[SW] Sync triggered', event.tag);
-  if (event.tag === SYNCS.UPDATE) {
-    messageAllClients({ name: MESSAGES.SYNC_STARTED });
-    event.waitUntil(
-      syncContacts()
-        .then(response => messageAllClients({
-          name: MESSAGES.SYNC_SUCCESS,
-          data: response,
-        }))
-        .catch(error => {
-          messageAllClients({
-            name: MESSAGES.SYNC_ERROR,
-            data: error.message,
-          });
-          return Promise.reject(error);
-        })
-    );
-  }
-});
+// ADD THE SYNC EVENT LISTENER HERE
 
-// Helper function we created to communicate with all connected browser windows
-function messageAllClients(message) {
-  return clients.matchAll({ type: 'window' })
-    .then((clientList) => {
-      console.debug(clientList);
-      clientList.forEach((client) => {
-        client.postMessage(message);
-      });
-    });
-}
+
+
+// ADD THE messageAllClients HELPER HERE
