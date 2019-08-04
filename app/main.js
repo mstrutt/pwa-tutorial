@@ -11,7 +11,12 @@ const fabForm = new FabForm(document.querySelector('.fab-form'), listHandler.onS
 
 // Triggering an update of the contacts data on page load
 updateContacts()
-  .then(() => {
+  .then((contacts) => {
+    // This line is a temporary piece to make sure the contacts
+    // list is rendered out before we start using IndexedDB to
+    // store the data. You can remove it once we've set that up.
+    listHandler.contacts = contacts;
+
     listHandler.updateData();
   });
 

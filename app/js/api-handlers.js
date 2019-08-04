@@ -6,7 +6,7 @@ export function updateContacts() {
 
 
   // REPLACE THIS LINE WITH CODE FROM THE TUTORIAL
-  const updateContactsRequest = Promise.resolve();
+  const updateContactsRequest = getContactsFromAPI();
 
 
   // Making this function take at least 1.5 seconds by depending on a timeout
@@ -28,6 +28,7 @@ export function createNewContact(contact) {
     })
     .catch(() => {
 
+      // THIS IS THE ERROR HANDLER
       // HANDLE THE FAILED NETWORK REQUEST HERE
 
     });
