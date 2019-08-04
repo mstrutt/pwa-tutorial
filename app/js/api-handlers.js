@@ -1,6 +1,7 @@
 import { API_ROUTES } from './config';
 import db from './dexie-setup';
 
+// Function to pull down the latest contacts data from the API
 export function updateContacts() {
   const updateContactsRequest = getContactsFromAPI()
     .then(contacts => {
@@ -8,12 +9,16 @@ export function updateContacts() {
         .then(() => contacts);
     });
 
+  // Making this function take at least 1.5 seconds by depending on a timeout
+  // This is purely for the sake of visually testing the syncs
   return Promise.all([
     updateContactsRequest,
     new Promise(resolve => setTimeout(() => { resolve() }, 1500)),
   ]).then(([contacts]) => contacts);
 }
 
+// Sending our newly created contact to the server, using offline
+// functionality as a backup if this failes
 export function createNewContact(contact) {
   return postContactToApi(contact)
     .then((serverContact) => {
@@ -28,6 +33,8 @@ export function createNewContact(contact) {
     });
 }
 
+// Sync task to pull any contacts that haven't been synced
+// from IndexedDB and post them to the server
 export function postUnsyncedContacts() {
   return db.updated_contacts.toArray()
     .then((contacts) => {
@@ -49,6 +56,8 @@ export function postUnsyncedContacts() {
     });
 }
 
+// Network request for getting contacts from the API.
+// Used in both the sync and in direct calls in the main thread.
 export function getContactsFromAPI() {
   return fetch(API_ROUTES.CONTACTS)
     .then((response) => {
@@ -60,6 +69,8 @@ export function getContactsFromAPI() {
     });
 }
 
+// Network request for posting a new contact to the API.
+// Used by the sync and by the initial request.
 export function postContactToApi(contact) {
   return fetch(API_ROUTES.CONTACTS, {
     method: 'POST',
