@@ -1,6 +1,6 @@
 # Building a data-rich Progressive Web App
 
-This repo is designed to be a companion to my tutorial in the August 2019 issue of NET mag.
+This repo is designed to be a companion to my tutorial in the October 2019 issue of NET mag.
 
 ## Setup
 
